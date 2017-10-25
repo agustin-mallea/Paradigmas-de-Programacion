@@ -1,0 +1,84 @@
+<% content_for :header_js do %>
+  <%= stylesheet_link_tag "styles" %>
+<% end %>
+<div class="description-section-text">
+    <div class="mdl-typography--display-1-color-contrast">
+      A dónde vas?
+    </div>
+</div>
+<form method="GET" action="/finish_trip">
+  <% if @trips == false  %>
+    <div class="description-section-text">
+      <div class="mdl-typography--display-1-color-contrast">
+        Lo sentimos, no hay drivers que hagan ese viaje.
+      </div>
+    </div>
+  <% elsif @trips != [] %>
+    <div class="mdl-cell mdl-cell--12-col">
+      <table class="mdl-data-table mdl-shadow--2dp">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="mdl-data-table__cell--non-numeric">Driver</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Ubicacion actual</th>
+            <th>Costo</th>
+            <th>Opiniones</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @trips.each do |trip| %>
+          <tr>
+            <td>
+              <label class="mdl-radio mdl-js-radio" for="trip-<%= trip.id %>">
+                <input type="radio" id="trip-<%= trip.id %>" class="mdl-radio__button"
+                       name="trip_number" value="<%= trip.id %>"/>
+              </label>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <!-- TODO fill with the driver's name -->
+              <%= trip.driver.name %>
+            </td>
+            <td>
+              <!-- TODO fill with the trip's origin -->
+              <%= trip.origin.name %>
+            </td>
+            <td>
+              <!-- TODO fill with the trip's destination -->
+              <%= trip.destination.name %>
+            </td>
+            <td>
+              <!-- TODO fill with the driver's actual position  -->
+              <%= trip.driver.position.name %>
+            </td>
+            <td>
+              <!-- TODO fill with the trip's cost -->
+              <%= trip.get_cost %>
+            </td>
+            <td>
+              <!-- TODO fill with the drivers's rating -->
+              <%= trip.driver.get_rating %>
+            </td>
+            <td>
+              <!-- TODO fill the href with the link to the profile page -->
+              <a href="/profile?user_id=<%= trip.driver.id %>"><i class="info-icon material-icons">info</i></a>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              id="select-trip-button" type="submit" name="submit">Pedir viaje</button>
+    </div>
+  <% else %>
+    <div class="description-section-text">
+    <div class="mdl-typography--display-1-color-contrast">
+      No hay conductores cerca tuyo.
+      <p>Refresca la pagina, quizas aparezca un driver!</p>
+    </div>
+  </div>
+  <% end %>
+</form>

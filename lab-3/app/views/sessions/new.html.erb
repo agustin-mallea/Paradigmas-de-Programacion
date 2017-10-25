@@ -1,0 +1,40 @@
+<% content_for :header_js do %>
+  <%= stylesheet_link_tag "styles" %>
+<% end %>
+
+<div class="mdl-grid content-grid">
+<div class="mdl-cell mdl-cell--12-col">
+  <div class="description-section-text">
+    <div class="mdl-typography--display-1-color-contrast">
+      Login
+    </div>
+    <p class="mdl-typography--font-light">
+      Iniciá sesión en <%= @app_title %> solo con tu dirección de email.
+      <br>
+    </p>
+  </div>
+</div>
+<%= form_for(:session, url: login_path) do |f| %>
+  <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-row">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="email" id="session_mail" name="session[mail]">
+        <label class="mdl-textfield__label" for="session_mail">Correo electrónico</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" id="session_password" name="session[password]" type="password">
+        <label class="mdl-textfield__label" for="session_password">Contraseña</label>
+      </div>
+    </div>
+    <div class="mdl-row mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--middler">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="submit-button">Aceptar</button>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--middler">
+        <div class="error-div"></div>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-layout-spacer"></div>
+<% end %>
+</div>

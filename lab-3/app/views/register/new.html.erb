@@ -1,0 +1,134 @@
+<% content_for :header_js do %>
+  <%= stylesheet_link_tag "styles" %>
+<% end %>
+
+<div class="mdl-grid content-grid">
+  <div class="mdl-cell mdl-cell--12-col description-section-text">
+    <div class="description-section">
+      <div class="mdl-typography--display-1-color-contrast">
+        Registrate ahora y comenzá a usar nuestra app!
+      </div>
+      <p class="mdl-typography--font-light">
+        Te podés registrar como usuario para usar nuestros servicios de transporte, o como conductor para sumarte a nuestro equipo de forma independiente.
+        <br>
+      </p>
+      <a href="" class="app-link mdl-typography--font-light">Averiguá más sobre cómo ser conductor</a>
+    </div>
+  </div>
+</div>
+<div class="mdl-grid content-grid">
+    <div>
+  <% if @passenger != nil %>
+      <div class="mdl-cell mdl-cell--7-col mdl-typography--text-center">
+        <div class="mdl-typography--font-light mdl-typography--headline">Registrate como usuario</div>
+        <%= form_for(@passenger) do |f| %>
+          <div class="mdl-row">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="passenger_name" name="passenger[name]">
+              <label class="mdl-textfield__label" for="passenger_name">Nombre</label>
+            </div>
+          </div>
+          <div class="mdl-row">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="email" id="passenger_mail" name="passenger[mail]">
+              <label class="mdl-textfield__label" for="passenger_mail">Correo electrónico</label>
+            </div>
+          </div>
+          <div class="mdl-row">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="passenger_phone" name="passenger[phone]">
+              <label class="mdl-textfield__label" for="passenger_phone">Teléfono</label>
+            </div>
+          </div>
+
+          <div class="mdl-row">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="password" id="passenger_password" name="passenger[password]">
+              <label class="mdl-textfield__label" for="passenger_password">Password</label>
+            </div>
+          </div>
+
+          <div class="mdl-row">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="password" id="passenger_password_confirmation" name="passenger[password_confiramtion]">
+              <label class="mdl-textfield__label" for="passenger_password_confirmation">Reingrese password</label>
+            </div>
+          </div>
+
+          <div class="mdl-row mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--middler">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="register-user-button">Aceptar</button>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--middler">
+              <div class="error-div error-div-passenger"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= render 'shared/error_messages' %>
+    </div> 
+  <% end %>
+    <% if @driver != nil %>
+    <%= form_for(@driver) do |f| %>
+    <div class="mdl-cell mdl-cell--7-col mdl-typography--text-center">
+      <div class="mdl-typography--font-light mdl-typography--headline">Registrate como conductor</div>
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="driver_name" name="driver[name]">
+          <label class="mdl-textfield__label" for="driver_name">Nombre</label>
+        </div>
+      </div>
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="email" id="driver_mail" name="driver[mail]">
+          <label class="mdl-textfield__label" for="driver_mail">Correo electrónico</label>
+        </div>
+      </div>
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="driver_phone" name="driver[phone]">
+          <label class="mdl-textfield__label" for="driver_phone">Teléfono</label>
+        </div>
+      </div>
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="driver_licence" name="driver[licence]">
+          <label class="mdl-textfield__label" for="driver_licence">Patente</label>
+        </div>
+      </div>
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="driver_fare" name="driver[fare]">
+          <label class="mdl-textfield__label" for="driver_fare">Tarifa</label>
+        </div>
+      </div>
+
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="password" id="driver_password" name="driver[password]">
+          <label class="mdl-textfield__label" for="driver_password">Password</label>
+        </div>
+      </div>
+
+      <div class="mdl-row">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="password" id="driver_password_confirmation" name="driver[password_confirmation]">
+          <label class="mdl-textfield__label" for="driver_password_confirmation">Reingrese password</label>
+        </div>
+      </div>
+
+      <div class="mdl-row mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--middler">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="register-driver-button">Aceptar</button>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--middler">
+          <div class="error-div error-div-driver"></div>
+        </div>
+      </div>
+    </div>
+    <%= render 'shared/error_messages' %>
+    <% end %>
+    <% end %>
+  <div>
+  </div>
+</div>

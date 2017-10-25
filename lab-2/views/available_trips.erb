@@ -1,0 +1,58 @@
+<form method="GET" action="/finish_trip">
+  <% if trips != [] %>
+    <div class="mdl-cell mdl-cell--12-col">
+      <table class="mdl-data-table mdl-shadow--2dp">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="mdl-data-table__cell--non-numeric">Driver</th>
+            <th>Costo</th>
+            <th>Opiniones</th>
+            <th>Ubicacion Actual</th>
+            <th>Distancia al origen</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% trips.each_with_index do |trip, index| %>
+          <tr>
+            <td>
+              <label class="mdl-radio mdl-js-radio" for="trip-<%= index %>">
+                <input type="radio" id="trip-<%= index %>" class="mdl-radio__button"
+                       name="trip_number" value="<%= index %>"/>
+              </label>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <!-- TODO fill with the driver's name -->
+              <%= trip.driver.get_username %>
+            </td>
+            <td>
+              <!-- TODO fill with the trip's cost -->
+              <%= trip.get_cost %>
+            </td>
+            <td>
+              <!-- TODO fill with the drivers's rating -->
+              <%= trip.driver.get_rating %>
+            </td>
+            <td>
+              <!-- TODO fill with the drivers's position -->
+              <%= trip.position.name %>
+            </td>
+            <td>
+              <!-- TODO fill with the distance between driver and passenger -->
+              <%= trip.get_distance_to_passenger %>
+            </td>
+            <td>
+              <!-- TODO fill the href with the link to the profile page -->
+              <a href="/profile?user_id=<%= trip.driver.get_id %>"><i class="info-icon material-icons">info</i></a>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+              id="select-trip-button" type="submit" name="submit">Pedir viaje</button>
+    </div>
+  <% end %>
+</form>

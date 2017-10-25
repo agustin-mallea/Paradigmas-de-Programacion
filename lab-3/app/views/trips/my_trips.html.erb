@@ -1,0 +1,66 @@
+<% content_for :header_js do %>
+  <%= stylesheet_link_tag "styles" %>
+<% end %>
+<div class="description-section-text">
+    <div class="mdl-typography--display-1-color-contrast">
+      Tus viajes
+    </div>
+</div>
+<% if @trips != [] %>
+  <form method="GET" action="/finish_trip">
+      <div class="mdl-cell mdl-cell--12-col">
+        <table class="mdl-data-table mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Driver</th>
+              <th>Origen</th>
+              <th>Destino</th>
+              <th>Ubicacion actual</th>
+              <th>Costo</th>
+              <th>Opiniones</th>
+              <th></th>
+            </tr>
+          </thead>
+          <% @trips.each do |trip| %>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">
+                <!-- TODO fill with the driver's name -->
+                <%= trip.driver.name %>
+              </td>
+              <td>
+                <!-- TODO fill with the trip's origin -->
+                <%= trip.origin.name %>
+              </td>
+              <td>
+                <!-- TODO fill with the trip's destination -->
+                <%= trip.destination.name %>
+              </td>
+              <td>
+                <!-- TODO fill with the driver's actual position -->
+                <%= trip.driver.position.name %>
+              </td>
+              <td>
+                <!-- TODO fill with the trip's cost -->
+                <%= trip.get_cost %>
+              </td>
+              <td>
+                <!-- TODO fill with the drivers's rating -->
+                <%= trip.driver.get_rating %>
+              </td>
+              <td>
+                <!-- TODO fill the href with the link to the profile page -->
+                <a href="/profile?user_id=<%= trip.driver.id %>"><i class="info-icon material-icons">info</i></a>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+  </form>
+<% else %>
+  <div class="description-section-text">
+    <div class="mdl-typography--display-1-color-contrast">
+      No has creado viajes todavia.
+    </div>
+  </div>     
+ <% end %>
+

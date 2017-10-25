@@ -1,0 +1,68 @@
+<div class="mdl-grid content-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="description-section-text">
+      <div class="mdl-typography--display-1-color-contrast">
+      Perfil de usuario
+      </div>
+    </div>
+  </div>
+  <div class="mdl-grid mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--12-col-phone profile-grid">
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">ID</div>
+        <!-- TODO fill with user id -->
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+          <%= user.get_id %>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Username</div>
+        <!-- TODO fill with username -->
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+          <%= user.get_username %>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Email</div>
+        <!-- TODO fill with email -->
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+          <%= user.get_mail %>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Teléfono</div>
+        <!-- TODO fill with phone -->
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+          <%= user.get_phone %>
+        </div>
+      <% if view_all %>
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Balance</div>
+          <!-- TODO fill with balance -->
+          <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+            <%= user.get_balance %>
+          </div>
+          <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Millas</div>
+          <!-- TODO fill with balance -->
+          <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+            <%= user.get_miles %>
+          </div>
+      <% end %>
+      <%if is_driver %>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Patente</div>
+        <!-- TODO fill with licence number -->
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone">
+          <%= user.get_licence %>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">Opiniones</div>
+        <div class="mdl-cell mdl-cell--8-col mdl-grid mdl-grid--no-spacing rating-div">
+          <!-- TODO iterate over all rating and rating_count values of the profiled user -->
+          <% user.get_rating_count.each_with_index do |rating_count, rating| %>
+            <div class="mdl-cell mdl-cell--8-col mdl-cell--3-col-phone mdl-cell--middler">
+              <span class="star-span">
+              <!-- Draw all the stars in the rating line. -->
+              <% (1..5 - rating).each do %>
+                <i class="material-icons">star</i>
+              <% end %>
+              </span>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--1-col-phone">
+              <%= rating_count %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
